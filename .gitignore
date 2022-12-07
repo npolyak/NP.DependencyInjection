@@ -4,3 +4,4 @@
 
 /src/obj
 /src/bin/Debug/net6.0
+*.nupkg
