@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>NP.DependencyInjection</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <title>NP.DependencyInjection</title>
     <authors>Nick Polyak, Ph. D.</authors>
     <license type="expression">MIT</license>
@@ -11,7 +11,7 @@
     <description>IoC, DI attributes and interfaces</description>
     <summary>DependencyInjection attributes and interfaces</summary>
     <releaseNotes>DependencyInjection attributes and interfaces</releaseNotes>
-    <copyright>Nick Polyak 2021</copyright>
+    <copyright>Nick Polyak 2022</copyright>
     <tags>DependencyInjection, IoC, DI</tags>
   </metadata>
 </package>
