@@ -64,7 +64,7 @@ namespace NP.DependencyInjection.Interfaces
         // an object to be returned by (resolvingType, resolutionKey) pair
         void RegisterSingletonFactoryMethodInfo
         (
-            MethodInfo factoryMethodInfo,
+            MethodBase factoryMethodInfo,
             Type? resolvingType = null,
             object? resolutionKey = null);
 
@@ -72,14 +72,14 @@ namespace NP.DependencyInjection.Interfaces
         // an object to be returned by (typeof(TToResolve), resolutionKey) pair
         void RegisterSingletonFactoryMethodInfo<TToResolve>
         (
-            MethodInfo factoryMethodInfo,
+            MethodBase factoryMethodInfo,
             object? resolutionKey = null);
 
         // register a non-singleton cell using resolving method given by its MethodInfo to produce
         // an object to be returned by (resolvingType, resolutionKey) pair
         void RegisterFactoryMethodInfo
         (
-            MethodInfo factoryMethodInfo,
+            MethodBase factoryMethodInfo,
             Type? resolvingType = null,
             object? resolutionKey = null);
 
@@ -88,7 +88,7 @@ namespace NP.DependencyInjection.Interfaces
         // an object to be returned by (typeof(TResolving), resolutionKey) pair
         public void RegisterFactoryMethodInfo<TResolving>
         (
-            MethodInfo factoryMethodInfo,
+            MethodBase factoryMethodInfo,
             object? resolutionKey = null);
 
         // register a type that has RegisterType class level attribute. This attribute
