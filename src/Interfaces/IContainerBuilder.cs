@@ -96,7 +96,10 @@ namespace NP.DependencyInjection.Interfaces
         // assumed to be the one from which the current type is derived),
         // also resolutionKey (if needed) and flag indication whether it is a singleton or not
         // (by default it is not a singleton)
-        void RegisterAttributedType(Type resolvingType);
+        void RegisterAttributedClass(Type attributedClassToRegister);
+
+        // registers static factory methods for class
+        void RegisterAttributedStaticFactoryMethodsFromClass(Type classContainingStaticFactoryMethodToRegister);
 
         // check every public type within the assembly and register it if it has
         // RegisterTypeAttribute
