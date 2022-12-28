@@ -12,7 +12,7 @@
 namespace NP.DependencyInjection.Interfaces
 {
     // unmodifyable IoC (DI) container that returns composed object
-    public interface IDependencyInjectionContainer
+    public interface IDependencyInjectionContainer<TKey>
     {
         // composes all the properties marked with InjectAttribute 
         // for the object
@@ -20,10 +20,10 @@ namespace NP.DependencyInjection.Interfaces
 
         // returns (and if appropriate also composes) an object
         // corresponding to (resolvingType, resolutionKey) pair
-        object Resolve(Type resolvingType, object? resolutionKey = null);
+        object Resolve(Type resolvingType, TKey resolutionKey = default);
 
         // returns (and if appropriate also composes) an object
         // corresponding to (typeof(TResolving), resolutionKey) pair
-        TResolving Resolve<TResolving>(object? resolutionKey = null);
+        TResolving Resolve<TResolving>(TKey resolutionKey = default);
     }
 }

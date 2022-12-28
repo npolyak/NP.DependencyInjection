@@ -9,21 +9,20 @@
 // Also, please, mention this software in any documentation for the 
 // products that use it.
 
-using System.ComponentModel;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
 namespace NP.DependencyInjection.Interfaces
 {
-    public interface IContainerBuilder
+    public interface IContainerBuilder<TKey>
     {
         // register a non-singleton cell producing objects of type 'typeToResolve'
         // to be composed and returned by (resolvingType, resolutionKey) pair. 
-        void RegisterType(Type resolvingType, Type typeToResolve, object? resolutionKey = null);
+        void RegisterType(Type resolvingType, Type typeToResolve, TKey resolutionKey = default);
 
         // register a non-singleton cell producing objects of type 'TToResolve'
         // to be composed and returned by (typeof(TResolving), resolutionKey) pair. 
-        void RegisterType<TResolving, TToResolve>(object? resolutionKey = null)
+        void RegisterType<TResolving, TToResolve>(TKey resolutionKey = default)
             where TToResolve : TResolving;
 
         // register a singleton cell returning the object instance
@@ -32,22 +31,22 @@ namespace NP.DependencyInjection.Interfaces
         (
             Type resolvingType,
             object instance,
-            object? resolutionKey = null);
+            TKey resolutionKey = default);
 
         // register a singleton cell returning the object instance
         // by (typeof(TResolving), resolutionKey) pair.
-        void RegisterSingletonInstance<TResolving>(object instance, object? resolutionKey = null);
+        void RegisterSingletonInstance<TResolving>(object instance, TKey resolutionKey = default);
 
         // register a singleton cell producing objects of type 'typeToResolve'
         // to be composed and returned by (resolvingType, resolutionKey) pair. 
-        void RegisterSingletonType<TResolving, TToResolve>(object? resolutionKey = null)
+        void RegisterSingletonType<TResolving, TToResolve>(TKey resolutionKey = default)
              where TToResolve : TResolving;
 
         // register a singleton cell using resolvingFunc to produce
         // an object to be returned by (typeof(TResolving), resolutionKey) pair
         void RegisterSingletonFactoryMethod<TResolving>(
             Func<TResolving> resolvingFunc,
-            object? resolutionKey = null
+            TKey resolutionKey = default
         );
 
 
@@ -56,7 +55,7 @@ namespace NP.DependencyInjection.Interfaces
         void RegisterFactoryMethod<TResolving>
         (
             Func<TResolving> resolvingFunc,
-            object? resolutionKey = null
+            TKey resolutionKey = default
         );
 
 
@@ -66,14 +65,14 @@ namespace NP.DependencyInjection.Interfaces
         (
             MethodBase factoryMethodInfo,
             Type? resolvingType = null,
-            object? resolutionKey = null);
+            TKey resolutionKey = default);
 
         // register a singleton cell using resolving method given by its MethodInfo to produce
         // an object to be returned by (typeof(TToResolve), resolutionKey) pair
         void RegisterSingletonFactoryMethodInfo<TToResolve>
         (
             MethodBase factoryMethodInfo,
-            object? resolutionKey = null);
+            TKey resolutionKey = default);
 
         // register a non-singleton cell using resolving method given by its MethodInfo to produce
         // an object to be returned by (resolvingType, resolutionKey) pair
@@ -81,7 +80,7 @@ namespace NP.DependencyInjection.Interfaces
         (
             MethodBase factoryMethodInfo,
             Type? resolvingType = null,
-            object? resolutionKey = null);
+            TKey resolutionKey = default);
 
 
         // register a non-singleton cell using resolving method given by its MethodInfo to produce
@@ -89,7 +88,7 @@ namespace NP.DependencyInjection.Interfaces
         public void RegisterFactoryMethodInfo<TResolving>
         (
             MethodBase factoryMethodInfo,
-            object? resolutionKey = null);
+            TKey resolutionKey = default);
 
         // register a type that has RegisterType class level attribute. This attribute
         // should provide the resolvingType (if not - resolving type is
@@ -125,9 +124,11 @@ namespace NP.DependencyInjection.Interfaces
             Regex? matchingFileName = null);
 
         // unregister a cell by (resolvingType, resolutionKey) pair. 
-        void UnRegister(Type resolvingType, object? resolutionKey = null);
+        void UnRegister(Type resolvingType, TKey resolutionKey = default);
 
         // create the unmodifyable DI container
-        IDependencyInjectionContainer Build();
+        IDependencyInjectionContainer<TKey> Build();
     }
+
+    public interface IContainerBuilder : IContainerBuilder<object?> { }
 }
