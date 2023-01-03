@@ -16,6 +16,12 @@ namespace NP.DependencyInjection.Interfaces
 {
     public interface IContainerBuilder<TKey>
     {
+        public void RegisterMultiCell
+        (
+            Type resolvingType,
+            TKey resolutionKey = default
+        );
+
         // register a non-singleton cell producing objects of type 'typeToResolve'
         // to be composed and returned by (resolvingType, resolutionKey) pair. 
         void RegisterType(Type resolvingType, Type typeToResolve, TKey resolutionKey = default);
