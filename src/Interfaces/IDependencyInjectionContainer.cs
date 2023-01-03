@@ -28,7 +28,6 @@ namespace NP.DependencyInjection.Interfaces
 
         public IEnumerable<TResolving> ResolveMultiCell<TResolving>
         (
-            Type resolvingType, 
             TKey resolutionKey = default);
     }
 }
