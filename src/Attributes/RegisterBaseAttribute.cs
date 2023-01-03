@@ -15,8 +15,6 @@ namespace NP.DependencyInjection.Attributes
     {
         public bool IsSingleton { get; set; } = false;
 
-        public bool ShouldAccumulate { get; set; } = false;
-
         public Type? ResolvingType { get; set; }
 
         public object? ResolutionKey { get; } = null;
@@ -24,17 +22,10 @@ namespace NP.DependencyInjection.Attributes
         public RegisterBaseAttribute
         (
             bool isSingleton = false, 
-            bool shouldAccumulate = false,
             object? resolutionKey = null
         )
         {
             IsSingleton = isSingleton;
-            ShouldAccumulate = shouldAccumulate;
-
-            if (!IsSingleton && ShouldAccumulate)
-            {
-                throw new Exception($"Cell with resolutionKey='{resolutionKey}' is not legal - Accumulation can only happen in a singleton object");
-            }
 
             ResolutionKey = resolutionKey;
         }
@@ -43,10 +34,9 @@ namespace NP.DependencyInjection.Attributes
         (
             Type resolvingType, 
             bool isSingleton = false, 
-            bool shouldAccumulate = false,
             object? resolutionKey = null) 
             :
-            this(isSingleton, shouldAccumulate, resolutionKey)
+            this(isSingleton, resolutionKey)
         {
             ResolvingType = resolvingType;
         }

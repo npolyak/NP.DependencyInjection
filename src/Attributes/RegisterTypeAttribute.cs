@@ -17,10 +17,9 @@ namespace NP.DependencyInjection.Attributes
         public RegisterTypeAttribute
         (
             bool isSingleton = false,
-            bool shouldAccumulate = false, 
             object? resolutionKey = null)
             :
-            base(isSingleton, shouldAccumulate, resolutionKey)
+            base(isSingleton, resolutionKey)
         {
 
         }
@@ -28,11 +27,10 @@ namespace NP.DependencyInjection.Attributes
         public RegisterTypeAttribute
         (
             Type typeToResolveBy, 
-            bool isSingleton = false, 
-            bool shouldAccumulate = false,
+            bool isSingleton = false,
             object? resolutionKey = null) 
             : 
-            base(typeToResolveBy, isSingleton, shouldAccumulate, resolutionKey)
+            base(typeToResolveBy, isSingleton, resolutionKey)
         {
 
         }
