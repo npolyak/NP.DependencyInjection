@@ -14,14 +14,25 @@ namespace NP.DependencyInjection.Attributes
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class RegisterTypeAttribute : RegisterBaseAttribute
     {
-        public RegisterTypeAttribute(bool isSingleton = false, object? resolutionKey = null)
-            : base(isSingleton, resolutionKey)
+        public RegisterTypeAttribute
+        (
+            bool isSingleton = false,
+            bool shouldAccumulate = false, 
+            object? resolutionKey = null)
+            :
+            base(isSingleton, shouldAccumulate, resolutionKey)
         {
 
         }
 
-        public RegisterTypeAttribute(Type typeToResolveBy, bool isSingleton = false, object? resolutionKey = null) : 
-            base(typeToResolveBy, isSingleton, resolutionKey)
+        public RegisterTypeAttribute
+        (
+            Type typeToResolveBy, 
+            bool isSingleton = false, 
+            bool shouldAccumulate = false,
+            object? resolutionKey = null) 
+            : 
+            base(typeToResolveBy, isSingleton, shouldAccumulate, resolutionKey)
         {
 
         }

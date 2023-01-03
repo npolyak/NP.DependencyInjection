@@ -14,14 +14,25 @@ namespace NP.DependencyInjection.Attributes
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class RegisterMethodAttribute : RegisterBaseAttribute
     {
-        public RegisterMethodAttribute(bool isSingleton = false, object? resolutionKey = null) :
-            base(isSingleton, resolutionKey)
+        public RegisterMethodAttribute
+        (
+            bool isSingleton = false, 
+            bool shouldAccumulate = false, 
+            object? resolutionKey = null) 
+            :
+            base(isSingleton, shouldAccumulate, resolutionKey)
         {
 
         }
 
-        public RegisterMethodAttribute(Type typeToResolve, bool isSingleton = false, object? resolutionKey = null) :
-            base(typeToResolve, isSingleton, resolutionKey)
+        public RegisterMethodAttribute
+        (
+            Type typeToResolve, 
+            bool isSingleton = false,
+            bool shouldAccumulate = false,
+            object? resolutionKey = null) 
+            :
+            base(typeToResolve, isSingleton, shouldAccumulate, resolutionKey)
         {
 
         }
