@@ -132,6 +132,9 @@ namespace NP.DependencyInjection.Interfaces
         // unregister a cell by (resolvingType, resolutionKey) pair. 
         void UnRegister(Type resolvingType, TKey resolutionKey = default);
 
+        // unregister a cell by (resolvingType, resolutionKey) pair. 
+        void UnRegister<TResolving>(TKey resolutionKey = default);
+
         // create the unmodifyable DI container
         IDependencyInjectionContainer<TKey> Build();
     }
