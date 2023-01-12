@@ -4,6 +4,14 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<Title>NP.DependencyInjection</Title>
+		<Authors>Nick Polyak, Ph. D.</Authors>
+		<Version>1.0.7</Version>
+		<Copyright>Nick Polyak 2023</Copyright>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Description>DependencyInjection attributes and interfaces</Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageTags>DependencyInjection, IoC, DI</PackageTags>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<DebugType>none</DebugType>
