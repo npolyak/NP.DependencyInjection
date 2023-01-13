@@ -17,9 +17,10 @@ namespace NP.DependencyInjection.Attributes
         public RegisterTypeAttribute
         (
             bool isSingleton = false,
-            object? resolutionKey = null)
+            object? resolutionKey = null,
+            bool isMultiCell = false)
             :
-            base(isSingleton, resolutionKey)
+            base(isSingleton, resolutionKey, isMultiCell)
         {
 
         }
@@ -28,9 +29,10 @@ namespace NP.DependencyInjection.Attributes
         (
             Type typeToResolveBy, 
             bool isSingleton = false,
-            object? resolutionKey = null) 
+            object? resolutionKey = null,
+            bool isMultiCell = false) 
             : 
-            base(typeToResolveBy, isSingleton, resolutionKey)
+            base(typeToResolveBy, isSingleton, resolutionKey, isMultiCell)
         {
 
         }

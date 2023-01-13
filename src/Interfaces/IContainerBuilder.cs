@@ -71,7 +71,8 @@ namespace NP.DependencyInjection.Interfaces
         (
             MethodBase factoryMethodInfo,
             Type? resolvingType = null,
-            TKey resolutionKey = default);
+            TKey resolutionKey = default,
+            bool isMultiCell = false);
 
         // register a singleton cell using resolving method given by its MethodInfo to produce
         // an object to be returned by (typeof(TToResolve), resolutionKey) pair
