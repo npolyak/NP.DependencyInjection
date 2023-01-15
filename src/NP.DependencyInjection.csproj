@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 		<Title>NP.DependencyInjection</Title>
 		<Authors>Nick Polyak, Ph. D.</Authors>
-		<Version>1.0.8</Version>
+		<Version>1.0.9</Version>
 		<Copyright>Nick Polyak 2023</Copyright>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Description>DependencyInjection attributes and interfaces</Description>

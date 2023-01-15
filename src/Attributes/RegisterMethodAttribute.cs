@@ -16,25 +16,28 @@ namespace NP.DependencyInjection.Attributes
     {
         public RegisterMethodAttribute
         (
-            bool isSingleton = false, 
-            object? resolutionKey = null,
-            bool isMultiCell = false) 
+            Type? resolvingType = null, 
+            bool isSingleton = false,
+            object? resolutionKey = null) 
             :
-            base(isSingleton, resolutionKey, isMultiCell)
+            base(resolvingType, isSingleton, resolutionKey)
         {
 
         }
+    }
 
-        public RegisterMethodAttribute
+
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
+    public class RegisterMultiCellMethodAttribute : RegisterMethodAttribute
+    {
+        public RegisterMultiCellMethodAttribute
         (
-            Type typeToResolve, 
-            bool isSingleton = false,
-            object? resolutionKey = null,
-            bool isMultiCell = false) 
+            Type? cellType,
+            object? resolutionKey = null)
             :
-            base(typeToResolve, isSingleton, resolutionKey, isMultiCell)
+            base(null, true, resolutionKey)
         {
-
+            CellType = cellType;
         }
     }
 }

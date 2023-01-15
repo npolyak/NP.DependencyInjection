@@ -15,40 +15,24 @@ namespace NP.DependencyInjection.Attributes
     {
         public bool IsSingleton { get; } = false;
 
-        public Type? ResolvingType { get; set; }
+        public Type? ResolvingType { get; }
 
         public object? ResolutionKey { get; } = null;
 
-        public bool IsMultiCell { get; }
+        public Type? CellType { get; protected set; } = null;
+
+        public bool IsMultiCell => CellType != null;
 
         public RegisterBaseAttribute
         (
-            bool isSingleton = false,
-            object? resolutionKey = null,
-            bool isMultiCell = false
-        )
+            Type? resolvingType = null, 
+            bool isSingleton = false, 
+            object? resolutionKey = null) 
         {
-            if (isMultiCell && !isSingleton)
-            {
-                throw new Exception($"ERROR: Multicell should always be a singleton - Error for key '{resolutionKey}'");
-            }
-
             IsSingleton = isSingleton;
 
             ResolutionKey = resolutionKey;
 
-            IsMultiCell = isMultiCell;
-        }
-
-        public RegisterBaseAttribute
-        (
-            Type resolvingType, 
-            bool isSingleton = false, 
-            object? resolutionKey = null,
-            bool isMultiCell = false) 
-            :
-            this(isSingleton, resolutionKey, isMultiCell)
-        {
             ResolvingType = resolvingType;
         }
     }

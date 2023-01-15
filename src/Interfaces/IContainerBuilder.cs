@@ -16,12 +16,6 @@ namespace NP.DependencyInjection.Interfaces
 {
     public interface IContainerBuilder<TKey>
     {
-        public void RegisterMultiCell
-        (
-            Type resolvingType,
-            TKey resolutionKey = default
-        );
-
         // register a non-singleton cell producing objects of type 'typeToResolve'
         // to be composed and returned by (resolvingType, resolutionKey) pair. 
         void RegisterType(Type resolvingType, Type typeToResolve, TKey resolutionKey = default);
@@ -71,8 +65,7 @@ namespace NP.DependencyInjection.Interfaces
         (
             MethodBase factoryMethodInfo,
             Type? resolvingType = null,
-            TKey resolutionKey = default,
-            bool isMultiCell = false);
+            TKey resolutionKey = default);
 
         // register a singleton cell using resolving method given by its MethodInfo to produce
         // an object to be returned by (typeof(TToResolve), resolutionKey) pair
@@ -140,5 +133,64 @@ namespace NP.DependencyInjection.Interfaces
         IDependencyInjectionContainer<TKey> Build();
     }
 
-    public interface IContainerBuilder : IContainerBuilder<object?> { }
+    public interface IContainerBuilder : IContainerBuilderWithMultiCells<object?> { }
+
+    public interface IContainerBuilderWithMultiCells<TKey> : IContainerBuilder<TKey>
+    {
+        // create empty multi cell 
+        public void RegisterMultiCell
+        (
+            Type resolvingType,
+            TKey resolutionKey = default
+        );
+
+        // create empty multi cell 
+        public void RegisterMultiCell<TResolving>
+        (
+            TKey resolutionKey = default
+        );
+
+        // register a singleton cell returning the object instance
+        // by (resolvingType, resolutionKey) pair.
+        void RegisterMultiCellObjInstance
+        (
+            Type cellType,
+            object instance,
+            TKey resolutionKey = default);
+
+        // register a singleton cell returning the object instance
+        // by (typeof(TResolving), resolutionKey) pair.
+        void RegisterMultiCellObjInstance<TCell>(object instance, TKey resolutionKey = default);
+
+        // register a singleton cell producing objects of type 'typeToResolve'
+        // to be composed and returned by (resolvingType, resolutionKey) pair. 
+        void RegisterMultiCellType<TCell, TToResolve>(TKey resolutionKey = default);
+
+        // register a singleton cell using resolvingFunc to produce
+        // an object to be returned by (typeof(TResolving), resolutionKey) pair
+        void RegisterMultiCellFactoryMethod<TResolving>(
+            Func<TResolving> resolvingFunc,
+            TKey resolutionKey = default
+        );
+
+        void RegisterMultiCellFactoryMethod<TCell>
+        (
+            Func<IEnumerable<TCell>> resolvingFunc, 
+            TKey resolutionKey = default);
+
+        // register a singleton cell using resolving method given by its MethodInfo to produce
+        // an object to be returned by (resolvingType, resolutionKey) pair
+        void RegisterMultiCellFactoryMethodInfo
+        (
+            MethodBase factoryMethodInfo,
+            Type resolvingType,
+            TKey resolutionKey = default);
+
+        // register a singleton cell using resolving method given by its MethodInfo to produce
+        // an object to be returned by (typeof(TToResolve), resolutionKey) pair
+        void RegisterMultiCellFactoryMethodInfo<TToResolve>
+        (
+            MethodBase factoryMethodInfo,
+            TKey resolutionKey = default);
+    }
 }
