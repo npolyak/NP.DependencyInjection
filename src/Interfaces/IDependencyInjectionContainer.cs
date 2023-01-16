@@ -25,9 +25,5 @@ namespace NP.DependencyInjection.Interfaces
         // returns (and if appropriate also composes) an object
         // corresponding to (typeof(TResolving), resolutionKey) pair
         TResolving Resolve<TResolving>(TKey resolutionKey = default);
-
-        public IEnumerable<TResolving> ResolveMultiCell<TResolving>
-        (
-            TKey resolutionKey = default);
     }
 }
